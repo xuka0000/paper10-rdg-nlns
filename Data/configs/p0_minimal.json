@@ -1,0 +1,55 @@
+{
+  "time_horizon_seconds": 600.0,
+  "physical": {
+    "road_sample_spacing_m": 5.0,
+    "stop_sample_spacing_m": 1.0,
+    "flight_clearance_sample_spacing_m": 2.0,
+    "minimum_segment_time_s": 0.25,
+    "maximum_segment_time_s": 120.0,
+    "maximum_dynamic_subsegments_per_leg": 12,
+    "maximum_observation_speed_mps": 0.5,
+    "trajectory_objective": {
+      "dynamic_time_weight": 1.0,
+      "expected_energy_weight": 0.001
+    },
+    "trajectory_optimizer": {
+      "dense_samples_per_interval": 7,
+      "maximum_iterations": 500,
+      "function_tolerance": 1e-9,
+      "equality_tolerance": 1e-6,
+      "inequality_tolerance": 1e-6
+    },
+    "observation_limits": {
+      "minimum_distance_m": 5.0,
+      "maximum_distance_m": 30.0,
+      "maximum_incidence_angle_rad": 0.7853981633974483,
+      "maximum_pointing_error_rad": 0.17453292519943295,
+      "minimum_terrain_clearance_m": 5.0,
+      "minimum_obstacle_clearance_m": 2.0,
+      "line_of_sight_spacing_m": 1.0
+    },
+    "energy_model": {
+      "motion_coefficient": 0.8,
+      "acceleration_coefficient": 0.15,
+      "climb_coefficient": 19.62,
+      "launch_recovery_energy_j": 500.0,
+      "uncertainty_base_j": 50.0,
+      "uncertainty_wind_coefficient": 1.0,
+      "uncertainty_temperature_coefficient": 0.2,
+      "reference_temperature_c": 20.0,
+      "violation_probability": 0.05
+    }
+  },
+  "agent": {
+    "time_big_m_seconds": 1000.0,
+    "weight_completion": 1.0,
+    "weight_makespan": 1.0,
+    "weight_vehicle_time": 0.1,
+    "weight_energy": 0.001,
+    "weight_missed": 10000.0,
+    "weight_waiting": 0.1,
+    "weight_plan_change": 0.1,
+    "time_limit_seconds": 30.0,
+    "mip_relative_gap": 0.0
+  }
+}

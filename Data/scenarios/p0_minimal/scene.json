@@ -1,0 +1,85 @@
+{
+  "scene_id": "p0-terrain-inspection",
+  "scene_name": "P0三维地形车载无人机巡检场景",
+  "terrain": {
+    "id": "terrain-p0",
+    "name": "带山脊规则高程网格",
+    "x_coordinates_m": [0.0, 50.0, 100.0, 150.0, 200.0],
+    "y_coordinates_m": [-50.0, 0.0, 50.0],
+    "heights_m": [
+      [0.0, 0.0, 0.0],
+      [1.0, 2.0, 4.0],
+      [4.0, 12.0, 30.0],
+      [2.0, 4.0, 8.0],
+      [0.0, 1.0, 2.0]
+    ]
+  },
+  "obstacle_field": {
+    "id": "obstacle-field-p0",
+    "name": "P0显式障碍场",
+    "obstacles": [
+      {
+        "id": "obstacle-tree-1",
+        "name": "高树障碍",
+        "center_x_m": 136.0,
+        "center_y_m": -7.0,
+        "radius_m": 3.0,
+        "minimum_elevation_m": 0.0,
+        "maximum_elevation_m": 45.0
+      }
+    ]
+  },
+  "road_nodes": [
+    {"id": "node-start", "name": "起点仓库副本", "x_m": 10.0, "y_m": -30.0, "role": "depot_start"},
+    {"id": "node-stop-1", "name": "第一停靠道路节点", "x_m": 60.0, "y_m": -30.0, "role": "ordinary"},
+    {"id": "node-stop-2", "name": "第二停靠道路节点", "x_m": 140.0, "y_m": -30.0, "role": "ordinary"},
+    {"id": "node-end", "name": "终点仓库副本", "x_m": 190.0, "y_m": -30.0, "role": "depot_end"},
+    {"id": "node-ridge", "name": "山脊不可达节点", "x_m": 100.0, "y_m": 50.0, "role": "ordinary"}
+  ],
+  "stop_sites": [
+    {"id": "stop-1", "name": "第一起飞回收点", "road_node_id": "node-stop-1", "footprint_radius_m": 2.0},
+    {"id": "stop-2", "name": "第二起飞回收点", "road_node_id": "node-stop-2", "footprint_radius_m": 2.0}
+  ],
+  "vehicles": [
+    {"id": "vehicle-1", "name": "巡检车辆一号", "maximum_road_grade_ratio": 0.20, "road_speed_mps": 10.0, "road_slope_sensitivity": 1.0, "maximum_stop_grade_ratio": 0.20, "minimum_stop_area_m2": 10.0, "current_road_node_id": "node-start"}
+  ],
+  "uavs": [
+    {"id": "uav-1", "name": "车载无人机一号", "carrier_vehicle_id": "vehicle-1", "maximum_speed_mps": 12.0, "maximum_thrust_acceleration_mps2": 20.0, "minimum_clearance_m": 5.0, "hover_power_w": 180.0, "mass_kg": 2.0, "battery_state_of_charge_j": 125000.0, "battery_reserve_ratio": 0.2, "available": true, "replacement_pack_energy_j": 125000.0, "turnaround_time_s": 30.0}
+  ],
+  "road_legs": [
+    {"id": "road-start-stop-1", "name": "仓库至第一停靠点", "source_node_id": "node-start", "target_node_id": "node-stop-1", "horizontal_polyline_m": [[10.0, -30.0], [60.0, -30.0]], "surface_factor": 0.95},
+    {"id": "road-stop-1-stop-2", "name": "第一至第二停靠点", "source_node_id": "node-stop-1", "target_node_id": "node-stop-2", "horizontal_polyline_m": [[60.0, -30.0], [100.0, -30.0], [140.0, -30.0]], "surface_factor": 0.90},
+    {"id": "road-stop-2-end", "name": "第二停靠点至仓库", "source_node_id": "node-stop-2", "target_node_id": "node-end", "horizontal_polyline_m": [[140.0, -30.0], [190.0, -30.0]], "surface_factor": 0.95},
+    {"id": "road-stop-1-ridge", "name": "山脊高坡支路", "source_node_id": "node-stop-1", "target_node_id": "node-ridge", "horizontal_polyline_m": [[60.0, -30.0], [80.0, 10.0], [100.0, 50.0]], "surface_factor": 0.80}
+  ],
+  "towers": [
+    {"id": "tower-1", "name": "一号输电杆塔", "x_m": 80.0, "y_m": 10.0, "rotation_matrix": [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]},
+    {"id": "tower-2", "name": "二号输电杆塔", "x_m": 130.0, "y_m": 15.0, "rotation_matrix": [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]}
+  ],
+  "components": [
+    {"id": "component-insulator-1", "name": "一号塔绝缘子串", "tower_id": "tower-1", "local_origin_m": [0.0, 0.0, 20.0], "component_type": "insulator_string"},
+    {"id": "component-crossarm-1", "name": "一号塔横担端部", "tower_id": "tower-1", "local_origin_m": [0.0, 0.0, 25.0], "component_type": "crossarm_end"},
+    {"id": "component-insulator-2", "name": "二号塔绝缘子串", "tower_id": "tower-2", "local_origin_m": [0.0, 0.0, 22.0], "component_type": "insulator_string"}
+  ],
+  "checkpoints": [
+    {"id": "checkpoint-1", "name": "一号绝缘子检查点", "component_id": "component-insulator-1", "local_position_m": [0.0, 0.0, 0.0], "surface_normal": [1.0, 0.0, 0.0]},
+    {"id": "checkpoint-2", "name": "一号横担检查点", "component_id": "component-crossarm-1", "local_position_m": [0.0, 2.0, 0.0], "surface_normal": [0.0, 1.0, 0.0]},
+    {"id": "checkpoint-3", "name": "二号绝缘子检查点", "component_id": "component-insulator-2", "local_position_m": [0.0, 0.0, 0.0], "surface_normal": [0.0, 1.0, 0.0]}
+  ],
+  "observation_poses": [
+    {"id": "pose-1", "name": "一号绝缘子有效位姿", "checkpoint_id": "checkpoint-1", "offset_from_checkpoint_m": [12.0, 0.0, 0.0], "camera_axis": [-1.0, 0.0, 0.0]},
+    {"id": "pose-2", "name": "一号横担有效位姿", "checkpoint_id": "checkpoint-2", "offset_from_checkpoint_m": [0.0, 12.0, 0.0], "camera_axis": [0.0, -1.0, 0.0]},
+    {"id": "pose-3", "name": "二号绝缘子有效位姿", "checkpoint_id": "checkpoint-3", "offset_from_checkpoint_m": [0.0, 12.0, 0.0], "camera_axis": [0.0, -1.0, 0.0]},
+    {"id": "pose-1-alt", "name": "一号绝缘子备用有效位姿", "checkpoint_id": "checkpoint-1", "offset_from_checkpoint_m": [14.0, 0.0, 1.0], "camera_axis": [-1.0, 0.0, -0.08]},
+    {"id": "pose-1-too-close", "name": "一号绝缘子过近失败位姿", "checkpoint_id": "checkpoint-1", "offset_from_checkpoint_m": [2.0, 0.0, 0.0], "camera_axis": [-1.0, 0.0, 0.0]}
+  ],
+  "tasks": [
+    {"id": "task-1", "name": "一号绝缘子巡检任务", "checkpoint_id": "checkpoint-1", "priority": 3.0, "service_duration_s": 8.0},
+    {"id": "task-2", "name": "一号横担巡检任务", "checkpoint_id": "checkpoint-2", "priority": 2.0, "service_duration_s": 7.0},
+    {"id": "task-3", "name": "二号绝缘子巡检任务", "checkpoint_id": "checkpoint-3", "priority": 3.0, "service_duration_s": 8.0}
+  ],
+  "weather_states": [
+    {"id": "weather-calm", "name": "平稳气象时段", "period_index": 0, "wind_vector_mps": [1.0, 0.0, 0.0], "temperature_c": 20.0},
+    {"id": "weather-breeze", "name": "侧风气象时段", "period_index": 1, "wind_vector_mps": [0.0, 4.0, 0.0], "temperature_c": 26.0}
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "external_import_names": [
+    "Agent",
+    "Env",
+    "Mask",
+    "alns",
+    "experiments_3d",
+    "numpy",
+    "psutil",
+    "pytest",
+    "scipy",
+    "torch",
+    "torch_geometric"
+  ],
+  "dynamic_calls": [
+    {
+      "file": "experiments_3d/supervision.py",
+      "line": 67,
+      "call": "subprocess.Popen(command, cwd=cwd, stdout=stdout, stderr=stderr, creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))"
+    }
+  ],
+  "dependency_type": "static import closure plus known original search roots; runtime assets remain external",
+  "training_evaluation_configs": "Required campaign manifests and CLI arguments are enforced in the included entrypoints; private production records not distributed."
+}

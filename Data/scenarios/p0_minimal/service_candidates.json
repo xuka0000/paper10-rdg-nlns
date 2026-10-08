@@ -1,0 +1,10 @@
+{
+  "candidates": [
+    {"id": "column-cp1", "name": "一号检查点单任务航次", "launch_stop_id": "stop-1", "recovery_stop_id": "stop-1", "uav_id": "uav-1", "weather_state_id": "weather-calm", "task_pose_sequence": [{"task_id": "task-1", "pose_id": "pose-1"}]},
+    {"id": "column-cp2", "name": "二号检查点单任务航次", "launch_stop_id": "stop-1", "recovery_stop_id": "stop-1", "uav_id": "uav-1", "weather_state_id": "weather-breeze", "task_pose_sequence": [{"task_id": "task-2", "pose_id": "pose-2"}]},
+    {"id": "column-cp3", "name": "三号检查点单任务航次", "launch_stop_id": "stop-1", "recovery_stop_id": "stop-1", "uav_id": "uav-1", "weather_state_id": "weather-calm", "task_pose_sequence": [{"task_id": "task-3", "pose_id": "pose-3"}]},
+    {"id": "column-cross-template", "name": "跨停靠双任务枚举航次", "launch_stop_id": "stop-1", "recovery_stop_id": "stop-2", "uav_id": "uav-1", "weather_state_id": "weather-breeze", "task_ids": ["task-1", "task-2"], "enumerate_task_orders": false},
+    {"id": "column-bad-pose", "name": "过近位姿拒绝航次", "launch_stop_id": "stop-1", "recovery_stop_id": "stop-1", "uav_id": "uav-1", "weather_state_id": "weather-calm", "task_pose_sequence": [{"task_id": "task-1", "pose_id": "pose-1-too-close"}]},
+    {"id": "column-bad-obstacle", "name": "显式障碍拒绝航次", "launch_stop_id": "stop-2", "recovery_stop_id": "stop-2", "uav_id": "uav-1", "weather_state_id": "weather-calm", "task_pose_sequence": [{"task_id": "task-3", "pose_id": "pose-3"}]}
+  ]
+}
